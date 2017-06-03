@@ -1,3 +1,4 @@
+//importaciones
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from "@angular/http";
 import "rxjs/add/operator/map";
@@ -6,13 +7,18 @@ import { Observable } from "rxjs/Observable";
 @Injectable()
 export class UserService {
 
+  //ur de conexion a la api
   public url = "http://localhost:3977/api";
 
-  constructor(private _http: Http){}    
-  //application/x-www-form-urlencoded
+  //injectamos la dependencia
+  constructor(private _http: Http){}  
+
   create(user_to_register){
+      //hacemos un json del objeto que estamos pasando por parametro
       let json = JSON.stringify(user_to_register);
+      //configuramos las headers
       let headers = new Headers({'Content-Type':'application/json'});
+      //hacemos la petición al servidor 
       return this._http.post(this.url+"/usuario/crear", json, {headers: headers})
                                                 .map(res => res);
   }
