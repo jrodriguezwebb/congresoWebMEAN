@@ -1,0 +1,112 @@
+<header></header>
+<h2 style="text-align:center;">{{title}}</h2>
+<div class="container">
+   <div class="row">
+      <div class="col-md-12">
+        <table class="table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="usuarios">
+              <tr *ngFor="let usuario of usuarios;">
+                <td>{{usuario.name}}</td>          
+                <td>{{usuario.surname}}</td>
+                <td>{{usuario.email}}</td>
+                <td>
+                  <span 
+                      class="glyphicon glyphicon-pencil" 
+                      aria-hidden="true"
+                      (click)="selectUser(usuario._id,usuario);"></span> 
+                </td>
+                <td>
+                  <span 
+                      class="glyphicon glyphicon-remove" 
+                      aria-hidden="true"
+                      (click)="deleteUser(usuario._id);"></span>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+   </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-xs-6">
+      <h2>Agregar Usuario</h2>
+      <form (ngSubmit)="addUser()">
+        <div class="form-group">
+          <label for="Nombre">Nombre</label>
+          <input 
+              type="text" 
+              class="form-control" 
+              id="Nombre"
+              name="Nombre"  
+              placeholder="¿Cómo te llamas?"
+              [(ngModel)]="usuario.name">
+        </div>
+        <div class="form-group">
+          <label for="Apellido">Apellido</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="Apellido" 
+            name="Apellido" 
+            placeholder="Apellido"
+            [(ngModel)]="usuario.surname">
+        </div>
+        <div class="form-group">
+          <label for="Email">Email</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="Email" 
+            name="Email" 
+            placeholder="Escribe tu Email"
+            [(ngModel)]="usuario.email">
+        </div>
+        <button type="submit" class="btn btn-primary pull-right">Agregar</button>
+      </form>
+    </div>
+    <div class="col-lg-6 col-md-6 col-xs-6">
+      <h2>Modificar Usuario</h2>
+      <form (ngSubmit)="updateUser()">
+        <div class="form-group">
+          <label for="NombreMod">Nombre</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="NombreMod"
+            name="NombreMod" 
+            placeholder="¿Cómo te llamas?"
+            [(ngModel)]="usuarioModificar.name">
+        </div>
+        <div class="form-group">
+          <label for="ApellidoMod">Apellido</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="ApellidoMod" 
+            name="ApellidoMod" 
+            placeholder="Apellido"
+            [(ngModel)]="usuarioModificar.surname">
+        </div>
+        <div class="form-group">
+          <label for="EmailMod">Email</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="EmailMod" 
+            name="EmailMod" 
+            placeholder="Escribe tu Email"
+            [(ngModel)]="usuarioModificar.email">
+        </div>
+        <button type="submit" class="btn btn-success pull-right">Guardar Modificación</button>
+      </form>
+    </div>
+  </div>
+</div>
