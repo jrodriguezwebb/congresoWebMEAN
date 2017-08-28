@@ -1,28 +1,24 @@
 'use strict'
 //incluyo el modelo
-var User = require('../models/user');
+var UserType = require('../models/userType');
 
 //Crear
-function createUser(req,res){
+function createUserType(req,res){
     //instanciamos una nueva clase
-    var user = new User();
+    var userType = new UserType();
     
     //recuperamos los parametros que vienen 
     var params = req.body;
-    user.name = params.name;
-    user.surname = params.surname;
-    user.email = params.email;
-    //TODO: Buscar objeto por el type que se recibe
-    //user.type = params.type;
-    console.log(params.name);
+    userType.name = params.name;
+    console.log(params);
     //validamos los campos
-    if(user.name!=null & user.surname!=null & user.email!=null){
+    if(userType.name!=null){
         //insertamos el objeto
-        user.save((err,userStored) => {
+        userType.save((err,userTypeStored) => {
             if(err){
                 res.status(500).send({message:'Error al guardar'});
             }else{
-                res.status(200).send({message:'Usuario Registrado'});
+                res.status(200).send({message:'Tipo de usuario Registrado'});
             }
         });
     }
@@ -33,9 +29,10 @@ function createUser(req,res){
 }
 
 //Leer
-function readUser(req,res){
+function readUserType(req,res){
+    //TODO: finish
     //recupero los parametos
-	var userId = req.params.id;    
+	/*var userId = req.params.id;    
     //valido si viene un userID
     if(userId != undefined){    
         //busco el o los usuarios
@@ -56,13 +53,14 @@ function readUser(req,res){
                 }
             }
         });	
-    }
+    }*/
 }
 
 //Leer todos los usuarios
-function readUsers(req,res){
+function readUserTypes(req,res){
     //busco el o los usuarios
-	User.find({},(err, users)=>{
+    //TODO: finish
+	/*User.find({},(err, users)=>{
 		if(err){
 			res.status(500).send({message: 'Error al devolver usuario'});
 			return false;
@@ -78,13 +76,14 @@ function readUsers(req,res){
                 res.status(200).send({message: 'Usuario no encontrado'});
 			}
 		}
-	});	
+	});*/	
 }
 
 //Actualizar
-function updateUser(req,res){
+function updateUserType(req,res){
     //recibo el id por parametro
-	var userId = req.params.id;
+    //TODO: finish
+	/*var userId = req.params.id;
     //json recibido con todos los campos a actualizar
 	var update = req.body;
     if(update){
@@ -97,14 +96,15 @@ function updateUser(req,res){
             }
             res.status(200).send(usuarioUpdated);
         });
-    }
+    }*/
     
 }
 
 //borrar
-function deleteUser(req,res){
+function deleteUserType(req,res){
 	//recibo el id por parametro
-	var userId = req.params.id;
+    //TODO: finish
+	/*var userId = req.params.id;
 	User.findById(userId,(err, user)=>{
 		if(err){
 			res.status(500).send({message: 'Error al devolver el usuario'+err});
@@ -130,13 +130,13 @@ function deleteUser(req,res){
 				});
 			}
 		}
-	});
+	});*/
 }
 
 module.exports = {
-    createUser,
-    readUser,
-    readUsers,
-    updateUser,
-    deleteUser
+    createUserType,
+    readUserType,
+    readUserTypes,
+    updateUserType,
+    deleteUserType
 }
